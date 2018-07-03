@@ -1,0 +1,14 @@
+{
+  "name": "3dstore",
+  "version": "1.0.0",
+  "description": "Store for 3d models",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sumit",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
