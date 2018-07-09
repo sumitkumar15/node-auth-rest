@@ -9,6 +9,8 @@
   "author": "Sumit",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "form-urlencoded": "^3.0.0",
+    "mongoose": "^5.2.1"
   }
 }
