@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-// app.use('/', require('./routes/'))
+app.use('/signup', require('./routes/signup'))
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
