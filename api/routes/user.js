@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken')
 
 const User = require('../models/user')
 
+const checkAuth = require('../middleware/auth-check')
+
 router.post('/signup', (req, res) => {
   User.find({ email: req.body.email })
     .then(user => {
@@ -87,14 +89,21 @@ router.post('/login', (req, res) => {
       })
     })
 })
-router.delete('/:userId', (req, res) => {
-  User.remove({ _id: req.param.userId })
+router.delete('/:userId', checkAuth, (req, res) => {
+  console.log(req.params)
+  User.remove({ _id: req.params.userId })
     .then(result => {
-      res.status(200).json({
-        message: 'User Deleted'
-      })
+      console.log(result)
+      if (result.n === 0) {
+        // throw exception
+      } else {
+        res.status(200).json({
+          message: 'User Deleted'
+        })
+      }
     })
     .catch(err => {
+      console.log(err)
       res.status(500).json({
         error: err
       })
