@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 exports.user_signup = (req, res, next) => {
   User.find({ email: req.body.email })
@@ -85,11 +86,12 @@ exports.user_login = (req, res, next) => {
 }
 
 exports.user_delete = (req, res, next) => {
-  User.remove({ _id: req.params.userId })
+  const id = mongoose.Types.ObjectId(req.params.userId)
+  User.remove({ _id: id })
+    .exec()
     .then(result => {
-      console.log(result)
       if (result.n === 0) {
-        // throw exception
+        throw new Error('Delete failed')
       } else {
         res.status(200).json({
           message: 'User Deleted'
