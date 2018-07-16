@@ -10,7 +10,9 @@ mongoose.connect(
   '@testapp-shard-00-00-nompv.mongodb.net:27017,testapp-shard-00-01-nompv.mongodb.net:27017,testapp-shard-00-02-nompv.mongodb.net:27017/test?ssl=true&replicaSet=testapp-shard-0&authSource=admin&retryWrites=true'
 )
 app.use(morgan('dev'))
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.use(bodyParser.json())
 
 app.use('/user', require('./api/routes/user'))
